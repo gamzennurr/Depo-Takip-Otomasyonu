@@ -10,16 +10,15 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QFont, QColor, QIcon, QIntValidator
 from PyQt5.QtCore import Qt, QDate, QSize
 
-# --- MODERN RENK PALETİ ---
-RENK_MENU_BG = "#1e293b"      # Antrasit Sidebar
-RENK_ICERIK_BG = "#f1f5f9"    # Açık Gri Arka Plan
-RENK_KART_BG = "#ffffff"      # Beyaz Kartlar
-RENK_ACCENT = "#db2777"       # Canlı Pembe
+# Arayüz renklerinin bulunduğu kısım
+RENK_MENU_BG = "#1e293b"      
+RENK_ICERIK_BG = "#f1f5f9"    
+RENK_KART_BG = "#ffffff"             
 RENK_ACCENT_HOVER = "#be185d" 
 RENK_YAZI_KOYU = "#0f172a"    
 RENK_YAZI_GRI = "#64748b"     
 
-# --- VERİTABANI ---
+# Veritabanı
 class DatabaseManager:
     def __init__(self, db_name="prostock_v5.db"):
         self.conn = sqlite3.connect(db_name)
@@ -54,8 +53,7 @@ class DatabaseManager:
             return res[0] if res else 0, res[1] if res else 0
         except:
             return 0, 0
-
-# --- YARDIMCI FONKSİYONLAR ---
+#---------------------------------------------
 def golge_efekti_ekle(widget):
     shadow = QGraphicsDropShadowEffect()
     shadow.setBlurRadius(20)
@@ -63,7 +61,7 @@ def golge_efekti_ekle(widget):
     shadow.setOffset(0, 5)
     widget.setGraphicsEffect(shadow)
 
-# --- MODERN BUTON ---
+# Butonlar
 class ModernButton(QPushButton):
     def __init__(self, text, primary=False):
         super().__init__(text)
@@ -102,7 +100,7 @@ class ModernButton(QPushButton):
                 }}
             """)
 
-# --- MODERN INPUT ---
+# İnput kısımları
 class ModernInput(QLineEdit):
     def __init__(self, placeholder=""):
         super().__init__()
@@ -122,7 +120,7 @@ class ModernInput(QLineEdit):
             }}
         """)
 
-# --- KPI KARTI ---
+# KPI Kartı
 class KPICard(QFrame):
     def __init__(self, baslik, deger, ikon="📊"):
         super().__init__()
@@ -157,7 +155,7 @@ class KPICard(QFrame):
     def guncelle(self, deger):
         self.deger_lbl.setText(str(deger))
 
-# --- ANA UYGULAMA ---
+# Main
 class ModernProStock(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -467,7 +465,7 @@ class ModernProStock(QMainWindow):
         self.kpi_toplam.guncelle(toplam)
         self.kpi_stok.guncelle(stok or 0)
 
-# --- UYGULAMA BAŞLATMA ---
+# Uygulamayı başlatan kısım
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
